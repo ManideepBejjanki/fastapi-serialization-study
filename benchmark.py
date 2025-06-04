@@ -3,6 +3,7 @@ import time
 
 JSON_URL = "http://127.0.0.1:8000/matrix/json"
 MSGPACK_URL = "http://127.0.0.1:8000/matrix/msgpack"
+PICKLE_URL = "http://127.0.0.1:8000/matrix/pickle"
 
 
 def benchmark(url: str, headers=None):
@@ -23,6 +24,11 @@ def run_benchmark():
         MSGPACK_URL, headers={"Accept": "application/msgpack"}
     )
     print(f"MessagePack: {msgpack_time:.4f}s | Payload: {msgpack_size / 1024:.2f} KB")
+
+    pickle_time, pickle_size = benchmark(
+        PICKLE_URL, headers={"Accept": "application/octet-stream"}
+    )
+    print(f"Pickle: {pickle_time:.4f}s | Payload: {pickle_size / 1024:.2f} KB")
 
 
 if __name__ == "__main__":

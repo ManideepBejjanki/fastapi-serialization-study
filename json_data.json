@@ -1,0 +1,13 @@
+{
+    "name": "ABC",
+    "age": 20,
+    "is_active": true,
+    "courses": [
+        "OS",
+        "SE"
+    ],
+    "address": {
+        "street": "Indrapur, Nagaram road",
+        "city": "Nizamabad"
+    }
+}

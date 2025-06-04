@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Response
 import numpy as np
 import msgpack
+import pickle
 
 app = FastAPI()
 
@@ -16,3 +17,8 @@ def get_matrix_json():
 def get_matrix_msgpack():
     data = msgpack.packb(matrix.tolist(), use_bin_type=True)
     return Response(content=data, media_type="application/msgpack")
+
+
+@app.get("/matrix/pickle")
+def get_Matrix_pickle():
+    return Response(content=pickle.dumps(matrix), media_type="application/octet-stream")
