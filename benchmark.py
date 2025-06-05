@@ -17,14 +17,17 @@ def benchmark(url: str, headers=None):
 def run_benchmark():
     print("Benchmarking....")
 
+    # run benchmark for json data.
     json_time, json_size = benchmark(JSON_URL)
     print(f"JSON: {json_time:.4f}s | Payload: {json_size / 1024:.2f} KB")
 
+    # run benchmark for msgpack data.
     msgpack_time, msgpack_size = benchmark(
         MSGPACK_URL, headers={"Accept": "application/msgpack"}
     )
     print(f"MessagePack: {msgpack_time:.4f}s | Payload: {msgpack_size / 1024:.2f} KB")
 
+    # run benchmark for pickle data.
     pickle_time, pickle_size = benchmark(
         PICKLE_URL, headers={"Accept": "application/octet-stream"}
     )
