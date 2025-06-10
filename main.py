@@ -13,26 +13,26 @@ app = FastAPI()
 matrix = np.random.rand(1000, 1000)
 
 
-# endpoint for json data.
+# endpoint returning json data.
 @app.get("/matrix/json")
 def get_matrix_json():
     return matrix.tolist()
 
 
-# endpoint for msgpack data.
+# endpoint returning msgpack data.
 @app.get("/matrix/msgpack")
 def get_matrix_msgpack():
     data = msgpack.packb(matrix.tolist(), use_bin_type=True)
     return Response(content=data, media_type="application/msgpack")
 
 
-# endpoint for pickle data.
+# endpoint returning pickle data.
 @app.get("/matrix/pickle")
 def get_Matrix_pickle():
     return Response(content=pickle.dumps(matrix), media_type="application/octet-stream")
 
 
-# endpoint for parquet data
+# endpoint returning parquet data
 @app.get("/matrix/parquet")
 def get_matrix_parquet():
     df = pd.DataFrame(matrix)
@@ -42,7 +42,7 @@ def get_matrix_parquet():
     return Response(content=buffer.getvalue(), media_type="application/octet-stream")
 
 
-# endpoint for joblib data
+# endpoint returning joblib data
 @app.get("/matrix/joblib")
 def get_matrix_joblib():
     buffer = io.BytesIO()
@@ -50,7 +50,7 @@ def get_matrix_joblib():
     return Response(content=buffer.getvalue(), media_type="application/octet-stream")
 
 
-# endpoint for bin data
+# endpoint returning bin data
 @app.get("/matrix/bin")
 def get_bin():
     return Response(content=matrix.tobytes(), media_type="application/octet-stream")
